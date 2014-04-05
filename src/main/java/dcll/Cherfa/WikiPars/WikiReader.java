@@ -2,10 +2,12 @@ package dcll.Cherfa.WikiPars;
 
 import java.util.regex.Pattern;
 
+import org.tsaap.quesions.impl.DefaultAnswer;
 import org.tsaap.quesions.impl.DefaultAnswerBlock;
+import org.tsaap.quesions.impl.DefaultQuestion;
 import org.tsaap.quesions.impl.DefaultQuiz;
-import org.tsaap.quesions.impl.DefaultUserAnswerBlock;
 import org.tsaap.questions.AnswerBlock;
+import org.tsaap.questions.QuestionType;
 import org.tsaap.questions.Quiz;
 
 
@@ -27,6 +29,22 @@ public class WikiReader {
 	 * 
 	 * @return Quiz
 	 */
+	public final Quiz parse() throws PasDEntrer, ErreurSyntax {
+        if (input.isEmpty()) {
+            throw new PasDEntrer("The Input is empty");
+        }
+        DefaultQuiz defQuiz = new DefaultQuiz();
+        for (String str : splitQuestions()) {
+            checkInputFormat(str);
+            DefaultQuestion question = new DefaultQuestion();
+            question.setTitle(getQuestionTitle(str));
+            question.setQuestionType(getQuestionType(str));
+            question.addAnswerBlock(getAnswerBlock(str));
+            defQuiz.addQuestion(question);
+        }
+        quiz = defQuiz;
+        return quiz;
+    }
 	/**
 	 * This method return the quiz
 	 * 
@@ -57,7 +75,7 @@ public class WikiReader {
 	/**
 	 * This method check the format of a input
 	 * 
-	 * @throws BadSyntaxException
+	 * @throws ErreurSyntax
 	 */
 	private void checkInputFormat(String input) throws ErreurSyntax {
 		String answerFormat = "[\\+-] (\\w|\\p{Punct})+";
@@ -84,6 +102,62 @@ public class WikiReader {
 			throw new ErreurSyntax("Format error, A good answer is missing");
 		}
 	}
+	 /**
+     * This method return the question type.
+     * @param str a String
+     * @return QuestionType
+     */
+    private QuestionType getQuestionType(final String str) {
+        String type = str.substring(str.indexOf(QUESTION_TYPE_REG)
+                + QUESTION_TYPE_REG.length(), str.indexOf(QUESTION_END_REG));
+        if (type.equals(EXCLUSIVE_CHOICE)) {
+            return QuestionType.ExclusiveChoice;
+        } else if (type.equals(MULTIPLE_CHOICE)) {
+            return QuestionType.MultipleChoice;
+        } else {
+            return QuestionType.Undefined;
+        }
+    }
 
+    /**
+     * This method return the title of the question.
+     * @param str a String
+     * @return String
+     */
+    private String getQuestionTitle(final String str) {
+        return str.substring(1, str.indexOf(QUESTION_TYPE_REG));
+    }
+
+    /**
+     * This method return the formatted AnswerBlock of the input.
+     * @param str a String containing the questions
+     * @return AnswerBlock
+     */
+    private AnswerBlock getAnswerBlock(final String str) {
+        DefaultAnswerBlock answerBlock = new DefaultAnswerBlock();
+        int correctAnswerNber = 0;
+
+        String responseBlock = str.substring(
+                str.indexOf(QUESTION_END_REG)
+                + QUESTION_END_REG.length());
+        String[] answersArray = responseBlock.split(LINE_SEPARATOR);
+
+        for (String answer : answersArray) {
+            if (answer.charAt(0) == CORRECT_ANSWER) {
+                correctAnswerNber++;
+            }
+        }
+        for (String answer : answersArray) {
+            DefaultAnswer ans = new DefaultAnswer();
+            ans.setTextValue(answer.substring(2));
+            if (answer.charAt(0) == CORRECT_ANSWER) {
+                ans.setPercentCredit(1.0f / correctAnswerNber);
+            } else {
+                ans.setPercentCredit(0f);
+            }
+            answerBlock.addAnswer(ans);
+        }
+        return answerBlock;
+    }
 
 }

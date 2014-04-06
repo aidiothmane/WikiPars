@@ -22,6 +22,7 @@ public class DefaultAnswerTest extends TestCase {
 		DefaultAnswer a = new DefaultAnswer();
 		a.setIdentifier("test");
 		assertEquals(a.hashCode(),a.getIdentifier().hashCode());
+		
 	}
 	
 	public void testgetTextValue(){

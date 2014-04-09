@@ -1,11 +1,13 @@
-{C'est le type par défaut des questions d'un quiz. Vous n'êtes pas obligé 
-de terminer l'intitulé par :
+{Type the question here...
 |type="[]"}
-+ Les lignes suivantes sont des propositions
-+ justes ou
-- fausses.
++ The correct answer.
+- Wrong or misleading answer.
++ Another correct answer.
+- Wrong or misleading answer.
 
-{ L'intitulé d'une question à choix unique se termine systématiquement par |type="()"}
-- elle contient des propositions
-- fausses
-+ et une unique proposition juste.
+{Type the question here...
+|type="()"}
++ The correct answer.
+- Wrong or misleading answer.
+- Wrong or misleading answer.
+- Wrong or misleading answer.

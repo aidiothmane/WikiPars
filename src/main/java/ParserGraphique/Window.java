@@ -108,7 +108,7 @@ public class Window extends JFrame {
         questionsPanel = new JPanel();
         buttonPanel = new JPanel();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Wikimedia Quiz");
+        setTitle("*****Wikiversity Parser*****");
         bValider.setText("Valider");
         bReset.setText("Réinitialiser");
         information.setEditable(false);

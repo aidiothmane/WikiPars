@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 public class WikiReaderTest extends TestCase {
 
-public void testWikiReader() throws PasDEntrer, ErreurSyntax{
+		public void testWikiReader() throws PasDEntrer, ErreurSyntax{
 WikiReader p = new WikiReader();
 assertNotNull(p);
 WikiReader p2=new WikiReader();

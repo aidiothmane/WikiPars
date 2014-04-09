@@ -10,7 +10,12 @@ import org.tsaap.questions.AnswerBlock;
 import org.tsaap.questions.QuestionType;
 import org.tsaap.questions.Quiz;
 
-
+/**
+ * 
+ * 
+ * ------test comment-----**
+ * 
+ * */
 public class WikiReader {
 	private static final char CORRECT_ANSWER = '+';
 	@SuppressWarnings("unused")

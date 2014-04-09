@@ -149,16 +149,7 @@ public class Window extends JFrame {
      * this method compute the score.
      * @param evt an event
      */
-    private void bValiderActionPerformed(final ActionEvent evt) {
-        String resultat = "";
-        int n = 1;
-        for (QuestionJPanel question : panelList) {
-            float score = question.compute() * SCORE_PERCENTAGE;
-            resultat += "- Question " + n + " -> " + score + " %\n";
-            n++;
-        }
-        information.append(resultat);
-    }
+    private void bValiderActionPerformed(final ActionEvent evt) { String resultat = ""; int n = 1; for (QuestionJPanel question : panelList) { float score = question.compute() * SCORE_PERCENTAGE; resultat = resultat.concat("- Question "); Integer i ; i=Integer.valueOf(n); resultat = resultat.concat(i.toString()); resultat = resultat.concat(" -> "); Double d = new Double(score); resultat = resultat.concat(d.toString()); resultat = resultat.concat(" %\n"); n++; } information.append(resultat); }
 
     /**
      * this method reset the form.

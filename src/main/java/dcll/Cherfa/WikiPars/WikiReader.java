@@ -112,7 +112,7 @@ public class WikiReader {
      * @param str a String
      * @return QuestionType
      */
-    private QuestionType getQuestionType(final String str) {
+    QuestionType getQuestionType(final String str) {
         String type = str.substring(str.indexOf(QUESTION_TYPE_REG)
                 + QUESTION_TYPE_REG.length(), str.indexOf(QUESTION_END_REG));
         if (type.equals(EXCLUSIVE_CHOICE)) {

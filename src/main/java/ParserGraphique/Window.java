@@ -19,7 +19,7 @@ import org.tsaap.questions.Question;
 import org.tsaap.questions.Quiz;
 
 /**
- * @author alpha oumar binta diallo
+ * @author Cherfa
  */
 @SuppressWarnings("serial")
 public class Window extends JFrame {

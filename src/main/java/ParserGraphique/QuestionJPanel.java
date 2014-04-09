@@ -5,7 +5,7 @@ import javax.swing.BorderFactory;
 import org.tsaap.questions.Question;
 
 /**
- * @author alpha oumar binta diallo
+ * @author Cherfa
  */
 @SuppressWarnings("serial")
 public abstract class QuestionJPanel extends javax.swing.JPanel {

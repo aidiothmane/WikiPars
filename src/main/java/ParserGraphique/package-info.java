@@ -1,4 +1,4 @@
 /**
- * @author alpha oumar binta diallo
+ * @author Cherfa
  */
 package ParserGraphique;

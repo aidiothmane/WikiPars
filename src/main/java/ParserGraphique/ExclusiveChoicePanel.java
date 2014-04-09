@@ -9,7 +9,8 @@ import org.tsaap.questions.Answer;
 import org.tsaap.questions.AnswerBlock;
 import org.tsaap.questions.Question;
 
-import dcll.ctc.dcll.ctc.parser.gui.model.RadioButtonAnswer;
+import ParserGraphiqueModel.RadioButtonAnswer;
+
 
 /**
  * @author Cherfa

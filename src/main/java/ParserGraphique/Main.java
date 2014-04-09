@@ -18,9 +18,11 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-import dcll.ctc.dcll.ctc.parser.BadSyntaxException;
-import dcll.ctc.dcll.ctc.parser.NoInputException;
-import dcll.ctc.dcll.ctc.parser.WikiversityParser;
+import dcll.Cherfa.WikiPars.ErreurSyntax;
+import dcll.Cherfa.WikiPars.PasDEntrer;
+import dcll.Cherfa.WikiPars.WikiReader;
+
+
 
 /**
  * @author Cherfa
@@ -38,7 +40,7 @@ public final class Main {
      * @param args the args.
      */
     public static void main(final String[] args) {
-        final WikiversityParser parser = new WikiversityParser();
+        final WikiReader parser = new WikiReader();
         final JFrame form = new JFrame();
         JButton bCharger, bOuvrir;
         bOuvrir = new JButton();
@@ -94,14 +96,14 @@ public final class Main {
     /**
      * @param parser the wikimedia parser.
      */
-    public static void showQuiz(final WikiversityParser parser) {
+    public static void showQuiz(final WikiReader parser) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     new Window(parser.parse()).setVisible(true);
-                } catch (NoInputException e) {
+                } catch (PasDEntrer e) {
                     showError("Parser", e.getMessage());
-                } catch (BadSyntaxException e) {
+                } catch (ErreurSyntax e) {
                     showError("Parser", e.getMessage());
                 }
             }

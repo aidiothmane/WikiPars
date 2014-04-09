@@ -1,6 +1,8 @@
 package ParserGraphique;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -24,6 +26,8 @@ import dcll.Cherfa.WikiPars.WikiReader;
 
 
 
+
+
 /**
  * @author Cherfa
  */
@@ -40,12 +44,7 @@ public final class Main {
      * @param args the args.
      */
     public static void main(final String[] args) {
-        final WikiReader parser = new WikiReader();
-        final JFrame form = new JFrame();
-        JButton bCharger, bOuvrir;
-        bOuvrir = new JButton();
-        bCharger = new JButton();
-        try {
+    	try {
             for (UIManager.LookAndFeelInfo info : javax.swing.UIManager
                     .getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -66,11 +65,41 @@ public final class Main {
             java.util.logging.Logger.getLogger(Window.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         }
+        final WikiReader parser = new WikiReader();
+        final JFrame form = new JFrame();
+        form.setUndecorated(true);
+        final JButton bCharger, bOuvrir;
+        bOuvrir = new JButton();
+        bCharger = new JButton();
+        bCharger.setPreferredSize(new Dimension(200,200));
+        bOuvrir.setPreferredSize(new Dimension(200,200));
+        bOuvrir.setBackground(Color.GREEN);
+        bCharger.setBackground(Color.GREEN);
+        bOuvrir.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        bCharger.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
+        bOuvrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            	bOuvrir.setBackground(Color.red);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            	bOuvrir.setBackground(Color.GREEN);
+            }
+        });
+        
+        bCharger.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            	bCharger.setBackground(Color.red);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            	bCharger.setBackground(Color.GREEN);
+            }
+        });
+        form.setLocationRelativeTo(null);
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         form.setTitle("Wikimedia Quiz");
-        form.setSize(form.getPreferredSize());
-        form.setResizable(false);
-        bOuvrir.setText("Charger un fichier");
+       
+        
+        bOuvrir.setText("<html><h2><strong>Charger un fichier</strong></h2></html>");
         bOuvrir.addActionListener(new ActionListener() {
             public void actionPerformed(final ActionEvent evt) {
                 parser.setInput(getFileContent(getFilePath()));
@@ -78,7 +107,7 @@ public final class Main {
                 showQuiz(parser);
             }
         });
-        bCharger.setText("Fichier par défaut");
+        bCharger.setText("<html><h2><strong>Fichier par défaut</strong></h2></html>");
         bCharger.addActionListener(new ActionListener() {
             public void actionPerformed(final ActionEvent evt) {
                 parser.setInput(getFileContent(FILE_TEST));
@@ -90,6 +119,8 @@ public final class Main {
         form.getContentPane().setLayout(layout);
         form.add(bOuvrir, BorderLayout.EAST);
         form.add(bCharger, BorderLayout.WEST);
+        form.setResizable(false);
+        form.setSize(form.getPreferredSize());
         form.pack();
         form.setVisible(true);
     }

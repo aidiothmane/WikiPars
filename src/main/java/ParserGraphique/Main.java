@@ -96,7 +96,7 @@ public final class Main {
         });
         form.setLocationRelativeTo(null);
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        form.setTitle("Wikiversity Parser");
+        form.setTitle("*****Wikiversity Quiz******");
        
         
         bOuvrir.setText("<html><h2><strong>Charger un fichier</strong></h2></html>");

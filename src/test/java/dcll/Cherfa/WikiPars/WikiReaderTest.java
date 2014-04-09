@@ -26,27 +26,27 @@ public class WikiReaderTest extends TestCase {
 				assertNotNull(dq);
 			}
 
-public void testCheckInputFormat1() throws ErreurSyntax, PasDEntrer {
-			int retourEx=0;
-			WikiReader p=new WikiReader();
-			p.setInput("");
-			try{
-			p.parse();
-			} catch (PasDEntrer n){
-			retourEx=1;
-			}
-			assertEquals(retourEx,1);
-			
-			p.setInput("{Type the question here... |type=\"()\"}"
-				+ "\n- Wrong or misleading answer."
-				+ "\n- Wrong or misleading answer.");
-			try{
-			p.parse();}
-			catch (ErreurSyntax n){
-			retourEx=2;
-			}
-			assertEquals(retourEx,2);
-}
+	public void testCheckInputFormat1() throws ErreurSyntax, PasDEntrer {
+				int retourEx=0;
+				WikiReader p=new WikiReader();
+				p.setInput("");
+				try{
+				p.parse();
+				} catch (PasDEntrer n){
+				retourEx=1;
+				}
+				assertEquals(retourEx,1);
+				
+				p.setInput("{Type the question here... |type=\"()\"}"
+					+ "\n- Wrong or misleading answer."
+					+ "\n- Wrong or misleading answer.");
+				try{
+				p.parse();}
+				catch (ErreurSyntax n){
+				retourEx=2;
+				}
+				assertEquals(retourEx,2);
+	}
 
 public void testCheckInputFormat2() throws ErreurSyntax, PasDEntrer {
 int retourEx=0;
